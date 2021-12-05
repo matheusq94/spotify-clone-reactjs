@@ -1,0 +1,25 @@
+version: '3'
+services:
+  frontend:
+    container_name: spotify-react-app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - main-network
+
+  backend:
+    container_name: json-server
+    build:
+      context: ./server
+      dockerfile: ./Dockerfile
+    ports:
+      - "3001:3001"
+    networks:
+      - main-network
+
+networks:
+  main-network:
+    driver: bridge
